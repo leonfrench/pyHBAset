@@ -854,7 +854,9 @@ def main() -> None:
             "Allen rank-z-scored matrix. "
             "A background list limits and re-ranks the AUROC universe."
         )
-
+        st.markdown(
+            "Source code is on [GitHub](https://github.com/leonfrench/pyHBAset)"
+        )
         st.header("Dataset")
         st.write(f"Dataset: `{config.label}`")
         st.write(f"Average matrix: `{average_expression.shape[0]:,}` genes x `{average_expression.shape[1]:,}` regions")
