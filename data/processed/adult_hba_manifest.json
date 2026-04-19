@@ -1,0 +1,28 @@
+{
+  "raw_adult_dir": "data/raw/allen_HBA",
+  "annotation_file": "data/raw/gene_symbol_annotations/AllenInstitute_custom_Agilent_Array.txt",
+  "probe_strategy": "reannotator",
+  "donor_ids": [
+    "donor10021",
+    "donor12876",
+    "donor14380",
+    "donor15496",
+    "donor15697",
+    "donor9861"
+  ],
+  "average_expression_shape": [
+    20869,
+    232
+  ],
+  "rank_zscore_shape": [
+    20869,
+    232
+  ],
+  "outputs": {
+    "average_expression": "adult_hba_average_expression.csv.gz",
+    "rank_zscore_expression": "adult_hba_rank_zscore_expression.csv.gz",
+    "gene_symbol_aliases": "adult_hba_gene_symbol_aliases.csv.gz",
+    "region_lookup": "adult_hba_region_lookup.csv.gz",
+    "region_donor_counts": "adult_hba_region_donor_counts.csv.gz"
+  }
+}

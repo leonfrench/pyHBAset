@@ -1,0 +1,26 @@
+{
+  "raw_fetal_dir": "data/raw/allen_human_fetal_brain",
+  "annotation_file": "data/raw/gene_symbol_annotations/AllenInstitute_custom_Agilent_Array.txt",
+  "probe_strategy": "reannotator",
+  "donor_ids": [
+    "12566",
+    "12690",
+    "12840",
+    "14751"
+  ],
+  "average_expression_shape": [
+    20869,
+    516
+  ],
+  "rank_zscore_shape": [
+    20869,
+    516
+  ],
+  "outputs": {
+    "average_expression": "fetal_hba_average_expression.csv.gz",
+    "rank_zscore_expression": "fetal_hba_rank_zscore_expression.csv.gz",
+    "gene_symbol_aliases": "fetal_hba_gene_symbol_aliases.csv.gz",
+    "region_lookup": "fetal_hba_region_lookup.csv.gz",
+    "region_donor_counts": "fetal_hba_region_donor_counts.csv.gz"
+  }
+}
