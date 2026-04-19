@@ -11,6 +11,26 @@ The app supports:
 - optional background gene universes for gene-list tests
 - adult and fetal Allen datasets
 
+## Background and attribution
+
+This project was originally developed by Leon French in 2013 and hosted by Paul Pavlidis and the Pavlidis lab at [UBC](https://hbaset.msl.ubc.ca/). We thank Paul Pavlidis and the Pavlidis lab for hosting and keeping it online for many years.
+
+Derek Howard later re-implemented and extended the original Java version in Python, and that codebase was used to study genes associated with anorexia nervosa in:
+Howard D, et al. *Molecular neuroanatomy of anorexia nervosa* (2020). [PubMed](https://pubmed.ncbi.nlm.nih.gov/32651428/)
+
+The present version builds on that analysis code:
+[derekhoward/molecular_AN](https://github.com/derekhoward/molecular_AN)
+
+This interactive web application was then built by Leon on top of that codebase by OpenAI Codex.
+
+## Data sources and references
+
+This project relies on Allen Institute human brain atlas resources, including:
+
+- Hawrylycz MJ, et al. *An anatomically comprehensive atlas of the adult human brain transcriptome* (2012). [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC4243026/)
+- Ding S-L, et al. *Comprehensive cellular-resolution atlas of the adult human brain* (2016). [PubMed](https://pubmed.ncbi.nlm.nih.gov/27418273/).
+
+
 ## Setup
 
 Create and activate the conda environment:
