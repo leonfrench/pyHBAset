@@ -36,11 +36,13 @@ This project relies on Allen Institute human brain atlas resources, including:
 Create and activate the conda environment:
 
 ```bash
-conda env create -f environment.yml
+conda env create -f environment-conda.yml
 conda activate HBA_enrichment_app
 ```
 
-The same Python dependencies are also listed in `requirements-streamlit.txt`.
+The same Python dependencies are pinned in `requirements.txt` for Streamlit
+Community Cloud. When deploying there, select Python 3.11 to match the tested
+local environment.
 
 ## Data
 
