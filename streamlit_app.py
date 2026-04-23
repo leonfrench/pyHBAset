@@ -16,6 +16,9 @@ import adult_hba_app_utils as hba_app
 DATA_DIR = Path("data/processed")
 ADULT_ONTOLOGY_PATH = Path("data/ontology.json")
 ALLEN_HBA_URL = "https://human.brain-map.org/"
+DATAFRAME_ROW_HEIGHT = 35
+DATAFRAME_HEADER_HEIGHT = 38
+DATAFRAME_PADDING_HEIGHT = 3
 
 
 @dataclass(frozen=True)
@@ -137,6 +140,11 @@ def apply_layout_css() -> None:
         """,
         unsafe_allow_html=True,
     )
+
+
+def dataframe_height_for_rows(num_rows: int, row_height: int = DATAFRAME_ROW_HEIGHT) -> int:
+    visible_rows = max(num_rows, 1)
+    return DATAFRAME_HEADER_HEIGHT + (visible_rows * row_height) + DATAFRAME_PADDING_HEIGHT
 
 
 @st.cache_data(show_spinner=False)
@@ -418,10 +426,9 @@ def wrap_svg_for_display(
           }}
 
           const region = target.getAttribute("data-hba-region");
-          const valueLabel = target.getAttribute("data-hba-value-label");
           const value = target.getAttribute("data-hba-value");
-          tooltip.textContent = region && valueLabel && value
-            ? `${{region}}, ${{valueLabel}}: ${{value}}`
+          tooltip.textContent = region && value
+            ? `${{region}}: ${{value}}`
             : target.getAttribute("data-hba-tooltip");
           tooltip.style.display = "block";
 
@@ -676,7 +683,9 @@ def single_gene_view(
     st.dataframe(
         table,
         width="stretch",
+        height=dataframe_height_for_rows(len(table)),
         hide_index=True,
+        row_height=DATAFRAME_ROW_HEIGHT,
         column_config={
             "Brain region": st.column_config.TextColumn("Brain region", width="large"),
             "Parent region": st.column_config.TextColumn("Parent region", width="medium"),
@@ -774,7 +783,9 @@ def multi_gene_view(
     st.dataframe(
         display_stats_table,
         width="stretch",
+        height=dataframe_height_for_rows(len(display_stats_table)),
         hide_index=True,
+        row_height=DATAFRAME_ROW_HEIGHT,
         column_config={
             "Brain region": st.column_config.TextColumn("Brain region", width="large"),
             "Parent region": st.column_config.TextColumn("Parent region", width="medium"),

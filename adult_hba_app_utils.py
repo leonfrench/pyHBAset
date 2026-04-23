@@ -429,7 +429,7 @@ def add_svg_tooltip(
 
     region_text = structure_label or "Unknown brain region"
     value_text = f"{value:.3f}" if np.isfinite(value) else "not available"
-    tooltip_text = f"{region_text}, {value_label}: {value_text}"
+    tooltip_text = f"{region_text}: {value_text}"
     element.attrs["data-hba-tooltip"] = tooltip_text
     element.attrs["data-hba-region"] = region_text
     element.attrs["data-hba-value-label"] = value_label
