@@ -19,6 +19,7 @@ ALLEN_HBA_URL = "https://human.brain-map.org/"
 DATAFRAME_ROW_HEIGHT = 35
 DATAFRAME_HEADER_HEIGHT = 38
 DATAFRAME_PADDING_HEIGHT = 3
+FETAL_RESULT_TABLE_MAX_ROWS = 15
 
 
 @dataclass(frozen=True)
@@ -142,9 +143,20 @@ def apply_layout_css() -> None:
     )
 
 
-def dataframe_height_for_rows(num_rows: int, row_height: int = DATAFRAME_ROW_HEIGHT) -> int:
+def dataframe_height_for_rows(
+    num_rows: int,
+    row_height: int = DATAFRAME_ROW_HEIGHT,
+    max_visible_rows: int | None = None,
+) -> int:
     visible_rows = max(num_rows, 1)
+    if max_visible_rows is not None:
+        visible_rows = min(visible_rows, max_visible_rows)
     return DATAFRAME_HEADER_HEIGHT + (visible_rows * row_height) + DATAFRAME_PADDING_HEIGHT
+
+
+def result_table_height(num_rows: int, config: DatasetConfig) -> int:
+    max_visible_rows = FETAL_RESULT_TABLE_MAX_ROWS if config.key == "fetal" else None
+    return dataframe_height_for_rows(num_rows, max_visible_rows=max_visible_rows)
 
 
 @st.cache_data(show_spinner=False)
@@ -683,7 +695,7 @@ def single_gene_view(
     st.dataframe(
         table,
         width="stretch",
-        height=dataframe_height_for_rows(len(table)),
+        height=result_table_height(len(table), config),
         hide_index=True,
         row_height=DATAFRAME_ROW_HEIGHT,
         column_config={
@@ -783,7 +795,7 @@ def multi_gene_view(
     st.dataframe(
         display_stats_table,
         width="stretch",
-        height=dataframe_height_for_rows(len(display_stats_table)),
+        height=result_table_height(len(display_stats_table), config),
         hide_index=True,
         row_height=DATAFRAME_ROW_HEIGHT,
         column_config={
